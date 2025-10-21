@@ -30,7 +30,7 @@ const BookList = () => {
       if (sortBy) params.append('sortBy', sortBy);
       if (sortOrder) params.append('sortOrder', sortOrder);
 
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/books?${params.toString()}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL || "https://bookreviewsystem-hsyj.onrender.com/api"}/books?${params.toString()}`);
       setBooks(response.data.books);
       const { page: currentPage, totalPages } = response.data;
       setPagination({
@@ -58,7 +58,7 @@ const BookList = () => {
   const handleDelete = async (bookId) => {
     if (!window.confirm('Are you sure you want to delete this book?')) return;
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/books/${bookId}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL || "https://bookreviewsystem-hsyj.onrender.com/api"}/books/${bookId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

@@ -13,7 +13,7 @@ const Profile = () => {
   const fetchUserData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/profile`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL || "https://bookreviewsystem-hsyj.onrender.com/api"}/auth/profile`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
